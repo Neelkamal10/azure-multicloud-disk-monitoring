@@ -1,0 +1,15 @@
+let LatestPct = Perf
+| where TimeGenerated > ago(15m)
+| where CounterName in~ ("% Free Space", "% Used Space")
+| extend FreePct = iff(CounterName =~ "% Used Space", 100.0 - CounterValue, CounterValue)
+| summarize arg_max(TimeGenerated, FreePct, Computer) by _ResourceId, InstanceName;
+let LatestMB = Perf
+| where TimeGenerated > ago(15m)
+| where CounterName =~ "Free Megabytes"
+| summarize arg_max(TimeGenerated, CounterValue) by _ResourceId, InstanceName
+| project _ResourceId, InstanceName, FreeMB=CounterValue;
+LatestPct
+| join kind=leftouter LatestMB on _ResourceId, InstanceName
+| extend FreeGiB = FreeMB / 1024.0
+| where FreePct < 10 or FreeGiB < 5
+| project TimeGenerated, Computer, Disk=InstanceName, FreePct, FreeGiB, _ResourceId

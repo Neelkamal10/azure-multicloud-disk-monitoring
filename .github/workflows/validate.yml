@@ -1,0 +1,25 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: python scripts/cost_model.py --csv cost-model.csv
+      - run: pytest -q
+      - run: ansible-playbook -i localhost, --syntax-check ansible/playbooks/discover.yml
+      - run: ansible-playbook -i localhost, --syntax-check ansible/playbooks/enroll-azure.yml
+      - run: ansible-playbook -i localhost, --syntax-check ansible/playbooks/onboard-arc.yml
+      - uses: azure/setup-bicep@v2
+      - run: bicep build infra/main.bicep

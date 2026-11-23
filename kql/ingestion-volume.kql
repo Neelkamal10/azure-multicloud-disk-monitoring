@@ -1,0 +1,5 @@
+Perf
+| where TimeGenerated between (startofday(ago(30d)) .. now())
+| where CounterName in~ ("% Free Space", "% Used Space", "Free Megabytes")
+| summarize Records=count(), BillableBytes=sum(_BilledSize), Machines=dcount(_ResourceId)
+| extend BillableGB=round(BillableBytes / 1e9, 3)

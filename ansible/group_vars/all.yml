@@ -1,0 +1,8 @@
+monitoring_resource_group: rg-monitoring-prod
+arc_resource_group: rg-arc-servers-prod
+monitoring_subscription_id: "{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}"
+azure_location: centralindia
+workspace_name: law-disk-monitoring-prod
+windows_dcr_name: dcr-disk-windows
+linux_dcr_name: dcr-disk-linux
+disk_monitoring_opt_out_tag: disk-monitoring

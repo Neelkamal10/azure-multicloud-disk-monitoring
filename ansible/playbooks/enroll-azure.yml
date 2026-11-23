@@ -1,0 +1,78 @@
+---
+- name: Enroll Azure VMs into agent-based disk monitoring
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - ../group_vars/all.yml
+  vars:
+    inventory_file: "{{ playbook_dir }}/../../build/azure-vm-inventory.json"
+  tasks:
+    - name: Require the monitoring subscription context
+      ansible.builtin.assert:
+        that:
+          - monitoring_subscription_id | length > 0
+        fail_msg: Set AZURE_SUBSCRIPTION_ID to the subscription containing the monitoring workspace and DCRs.
+
+    - name: Resolve the Windows DCR resource ID
+      ansible.builtin.command:
+        argv:
+          - az
+          - monitor
+          - data-collection
+          - rule
+          - show
+          - --resource-group
+          - "{{ monitoring_resource_group }}"
+          - --name
+          - "{{ windows_dcr_name }}"
+          - --subscription
+          - "{{ monitoring_subscription_id }}"
+          - --query
+          - id
+          - --output
+          - tsv
+      register: windows_dcr
+      changed_when: false
+
+    - name: Resolve the Linux DCR resource ID
+      ansible.builtin.command:
+        argv:
+          - az
+          - monitor
+          - data-collection
+          - rule
+          - show
+          - --resource-group
+          - "{{ monitoring_resource_group }}"
+          - --name
+          - "{{ linux_dcr_name }}"
+          - --subscription
+          - "{{ monitoring_subscription_id }}"
+          - --query
+          - id
+          - --output
+          - tsv
+      register: linux_dcr
+      changed_when: false
+
+    - name: Load inventory
+      ansible.builtin.set_fact:
+        fleet: "{{ lookup('file', inventory_file) | from_json }}"
+
+    - name: Apply AMA and the operating-system-specific DCR association
+      ansible.builtin.include_tasks: tasks/enroll-one-azure.yml
+      loop: "{{ fleet }}"
+      loop_control:
+        loop_var: vm
+        label: "{{ vm.id }}"
+      vars:
+        windows_dcr_resource_id: "{{ windows_dcr.stdout | trim }}"
+        linux_dcr_resource_id: "{{ linux_dcr.stdout | trim }}"
+        dcr_resource_id: "{{ (windows_dcr.stdout | trim) if (vm.osType | lower == 'windows') else (linux_dcr.stdout | trim) }}"
+        ama_extension_name: "{{ 'AzureMonitorWindowsAgent' if vm.osType | lower == 'windows' else 'AzureMonitorLinuxAgent' }}"
+      when:
+        - (vm.tags | default({}, true)).get(disk_monitoring_opt_out_tag, 'enabled') | lower != 'disabled'
+        - vm.osType | lower in ['windows', 'linux']
+
+# Azure Policy is the recommended steady-state control. This playbook implements the
+# same extension and DCR association for pilot, repair, and auditable enrollment.

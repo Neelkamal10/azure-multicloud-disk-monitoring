@@ -1,0 +1,45 @@
+---
+- name: Bootstrap approved AWS and GCP machines to Azure Arc
+  hosts: multicloud_candidates
+  gather_facts: true
+  become: true
+  serial: 10
+  vars_files:
+    - ../group_vars/all.yml
+  vars:
+    arc_install_script: /opt/azcmagent/connect.sh
+  tasks:
+    - name: Refuse unapproved hosts
+      ansible.builtin.assert:
+        that:
+          - cloud_origin in ['aws', 'gcp']
+          - arc_onboarding_approved | bool
+          - disk_monitoring | default('enabled') != 'disabled'
+
+    - name: Download the tenant-approved Arc onboarding script
+      ansible.builtin.get_url:
+        url: "{{ arc_onboarding_script_url }}"
+        dest: "{{ arc_install_script }}"
+        mode: '0700'
+        checksum: "sha256:{{ arc_onboarding_script_sha256 }}"
+      no_log: true
+
+    - name: Register the server with short-lived credentials
+      ansible.builtin.command:
+        argv:
+          - "{{ arc_install_script }}"
+          - --resource-group
+          - "{{ arc_resource_group }}"
+          - --location
+          - "{{ azure_location }}"
+          - --tags
+          - "cloud={{ cloud_origin }},source={{ cloud_account_or_project }},disk-monitoring=enabled"
+      environment:
+        AZURE_FEDERATED_TOKEN_FILE: "{{ azure_federated_token_file }}"
+      no_log: true
+      register: arc_connect
+      changed_when: arc_connect.rc == 0
+
+# After registration, assign the Azure Policy initiative that installs AMA and
+# associates the Windows or Linux DCR. The onboarding URL, checksum, token path,
+# and inventory variables come from the approved secret/inventory system, not Git.

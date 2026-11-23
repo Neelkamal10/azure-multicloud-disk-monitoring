@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#17365D"/></marker></defs>
+<style>
+text{font-family:'Aptos','Segoe UI',Arial,sans-serif; fill:#243447} .title{font-size:34px;font-weight:700;fill:#17365D} .subtitle{font-size:17px;fill:#5B6573} .section{font-size:21px;font-weight:700;fill:#17365D} .boxTitle{font-size:17px;font-weight:700} .small{font-size:14px} .tiny{font-size:12px;fill:#5B6573} .solid{fill:none;stroke-width:3} .dashed{fill:none;stroke-width:3;stroke-dasharray:10 8} .dotted{fill:none;stroke-width:3;stroke-dasharray:2 7}
+</style><rect width="1600" height="900" fill="white"/><text x="60" y="55" class="title">Scalable disk monitoring across Azure, AWS, and Google Cloud</text><text x="60" y="84" class="subtitle">Azure is the implemented baseline; Azure Arc extends the same monitoring plane to non-Azure VMs.</text><rect x="50" y="120" width="330" height="650" rx="22" fill="#F7F9FC" stroke="#94A3B8" stroke-width="2"/>
+<text x="75" y="155" class="section">Cloud estates</text>
+<g><circle cx="95" cy="215" r="25" fill="#0078D4"/><text x="95" y="221" text-anchor="middle" font-size="18" font-weight="700" fill="white">Az</text></g>
+<rect x="135" y="180" width="210" height="80" rx="16" fill="#EAF5FD" stroke="#0078D4" stroke-width="2"/>
+<text x="240.0" y="207" text-anchor="middle" class="boxTitle" fill="#17365D">Azure</text>
+<text x="240.0" y="232" text-anchor="middle" class="small">10 subscriptions</text>
+<text x="240.0" y="252" text-anchor="middle" class="small">Windows + Linux VMs</text>
+<g><circle cx="95" cy="345" r="25" fill="#FF9900"/><text x="95" y="351" text-anchor="middle" font-size="18" font-weight="700" fill="white">AWS</text></g>
+<rect x="135" y="310" width="210" height="80" rx="16" fill="#FFF4E5" stroke="#FF9900" stroke-width="2"/>
+<text x="240.0" y="337" text-anchor="middle" class="boxTitle" fill="#17365D">Amazon Web Services</text>
+<text x="240.0" y="362" text-anchor="middle" class="small">AWS accounts</text>
+<text x="240.0" y="382" text-anchor="middle" class="small">EC2 instances</text>
+<g><circle cx="95" cy="475" r="25" fill="#4285F4"/><text x="95" y="481" text-anchor="middle" font-size="18" font-weight="700" fill="white">G</text></g>
+<rect x="135" y="440" width="210" height="80" rx="16" fill="#EDF4FF" stroke="#4285F4" stroke-width="2"/>
+<text x="240.0" y="467" text-anchor="middle" class="boxTitle" fill="#17365D">Google Cloud</text>
+<text x="240.0" y="492" text-anchor="middle" class="small">GCP projects</text>
+<text x="240.0" y="512" text-anchor="middle" class="small">Compute Engine VMs</text>
+<rect x="90" y="590" width="245" height="120" rx="16" fill="white" stroke="#5B6573" stroke-width="2"/>
+<text x="212.5" y="617" text-anchor="middle" class="boxTitle" fill="#17365D">Source-cloud controls</text>
+<text x="212.5" y="642" text-anchor="middle" class="small">Azure RBAC / Policy</text>
+<text x="212.5" y="662" text-anchor="middle" class="small">AWS IAM + approved bootstrap</text>
+<text x="212.5" y="682" text-anchor="middle" class="small">GCP IAM + approved bootstrap</text>
+<rect x="420" y="120" width="360" height="650" rx="22" fill="#F4F9FE" stroke="#0078D4" stroke-width="2"/>
+<text x="450" y="155" class="section">Governance and onboarding</text>
+<rect x="465" y="185" width="270" height="95" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="600.0" y="212" text-anchor="middle" class="boxTitle" fill="#17365D">Microsoft Entra ID</text>
+<text x="600.0" y="237" text-anchor="middle" class="small">Managed identity / OIDC</text>
+<text x="600.0" y="257" text-anchor="middle" class="small">short-lived credentials</text>
+<rect x="465" y="320" width="270" height="110" rx="16" fill="white" stroke="#8661C5" stroke-width="2"/>
+<text x="600.0" y="347" text-anchor="middle" class="boxTitle" fill="#17365D">Ansible Automation Platform</text>
+<text x="600.0" y="372" text-anchor="middle" class="small">Discovery • Arc bootstrap</text>
+<text x="600.0" y="392" text-anchor="middle" class="small">Enrollment • repair • validation</text>
+<rect x="465" y="480" width="270" height="95" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="600.0" y="507" text-anchor="middle" class="boxTitle" fill="#17365D">Azure Policy</text>
+<text x="600.0" y="532" text-anchor="middle" class="small">AMA extension</text>
+<text x="600.0" y="552" text-anchor="middle" class="small">OS-specific DCR association</text>
+<rect x="465" y="615" width="270" height="95" rx="16" fill="white" stroke="#107C10" stroke-width="2"/>
+<text x="600.0" y="642" text-anchor="middle" class="boxTitle" fill="#17365D">Azure Arc-enabled Servers</text>
+<text x="600.0" y="667" text-anchor="middle" class="small">Azure resource identity for</text>
+<text x="600.0" y="687" text-anchor="middle" class="small">AWS and GCP machines</text>
+<rect x="820" y="120" width="500" height="650" rx="22" fill="#F7FBFF" stroke="#0078D4" stroke-width="3"/>
+<text x="850" y="155" class="section">Azure Monitor - central observability plane</text>
+<rect x="870" y="195" width="180" height="100" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="960.0" y="222" text-anchor="middle" class="boxTitle" fill="#17365D">Azure Monitor Agent</text>
+<text x="960.0" y="247" text-anchor="middle" class="small">Guest disk counters</text>
+<text x="960.0" y="267" text-anchor="middle" class="small">Outbound HTTPS</text>
+<rect x="1090" y="195" width="180" height="100" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="1180.0" y="222" text-anchor="middle" class="boxTitle" fill="#17365D">Data Collection Rules</text>
+<text x="1180.0" y="247" text-anchor="middle" class="small">Windows / Linux</text>
+<text x="1180.0" y="267" text-anchor="middle" class="small">300-second baseline</text>
+<rect x="870" y="355" width="400" height="115" rx="16" fill="#EAF5FD" stroke="#0078D4" stroke-width="2"/>
+<text x="1070.0" y="382" text-anchor="middle" class="boxTitle" fill="#17365D">Log Analytics workspace</text>
+<text x="1070.0" y="407" text-anchor="middle" class="small">Perf table • resource ID • disk instance</text>
+<text x="1070.0" y="427" text-anchor="middle" class="small">31-day baseline retention</text>
+<rect x="870" y="530" width="180" height="105" rx="16" fill="white" stroke="#C42B1C" stroke-width="2"/>
+<text x="960.0" y="557" text-anchor="middle" class="boxTitle" fill="#17365D">KQL + alerts</text>
+<text x="960.0" y="582" text-anchor="middle" class="small">Warning • critical</text>
+<text x="960.0" y="602" text-anchor="middle" class="small">Stale telemetry</text>
+<rect x="1090" y="530" width="180" height="105" rx="16" fill="white" stroke="#107C10" stroke-width="2"/>
+<text x="1180.0" y="557" text-anchor="middle" class="boxTitle" fill="#17365D">Workbook</text>
+<text x="1180.0" y="582" text-anchor="middle" class="small">Fleet state • trend</text>
+<text x="1180.0" y="602" text-anchor="middle" class="small">Onboarding coverage</text>
+<rect x="1360" y="120" width="190" height="650" rx="22" fill="#FAFAFA" stroke="#94A3B8" stroke-width="2"/>
+<text x="1390" y="155" class="section">Operations</text>
+<rect x="1385" y="205" width="140" height="90" rx="16" fill="white" stroke="#C42B1C" stroke-width="2"/>
+<text x="1455.0" y="232" text-anchor="middle" class="boxTitle" fill="#17365D">Action Group</text>
+<text x="1455.0" y="257" text-anchor="middle" class="small">Email / ITSM</text>
+<text x="1455.0" y="277" text-anchor="middle" class="small">On-call routing</text>
+<rect x="1385" y="355" width="140" height="90" rx="16" fill="white" stroke="#5B6573" stroke-width="2"/>
+<text x="1455.0" y="382" text-anchor="middle" class="boxTitle" fill="#17365D">Platform team</text>
+<text x="1455.0" y="407" text-anchor="middle" class="small">Policy and</text>
+<text x="1455.0" y="427" text-anchor="middle" class="small">agent health</text>
+<rect x="1385" y="505" width="140" height="105" rx="16" fill="white" stroke="#5B6573" stroke-width="2"/>
+<text x="1455.0" y="532" text-anchor="middle" class="boxTitle" fill="#17365D">Service owner</text>
+<text x="1455.0" y="557" text-anchor="middle" class="small">Cleanup, retention,</text>
+<text x="1455.0" y="577" text-anchor="middle" class="small">resize, recovery</text>
+<path d="M345 220 C390 220, 410 220, 465 220" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M345 350 C405 350, 420 375, 465 375" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M345 480 C405 480, 420 390, 465 390" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M735 375 C790 375, 805 245, 870 245" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M735 665 C790 665, 805 260, 870 260" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M380 235 C650 100, 810 185, 870 235" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M380 365 C620 365, 725 635, 870 270" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M380 495 C610 520, 740 650, 870 280" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1050 245 L1090 245" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M1180 295 L1180 355" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M870 412 L820 412" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1070 470 L970 530" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1150 470 L1180 530" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1270 582 C1335 582, 1350 250, 1385 250" class="dotted" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M1385 280 C1325 300, 1310 590, 1270 590" class="dotted" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M1385 400 C1320 400, 1310 415, 1270 415" class="dotted" stroke="#17365D" marker-end="url(#arrow)"/>
+<text x="60" y="875" class="tiny">Solid: telemetry   Dashed: management / policy   Dotted: alert and operator response</text></svg>

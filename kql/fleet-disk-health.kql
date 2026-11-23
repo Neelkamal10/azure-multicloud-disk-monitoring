@@ -1,0 +1,19 @@
+let Lookback = 20m;
+let LatestPct = Perf
+| where TimeGenerated > ago(Lookback)
+| where CounterName in~ ("% Free Space", "% Used Space")
+| extend FreePct = iff(CounterName =~ "% Used Space", 100.0 - CounterValue, CounterValue)
+| summarize arg_max(TimeGenerated, FreePct, Computer, _ResourceId) by _ResourceId, InstanceName;
+let LatestMB = Perf
+| where TimeGenerated > ago(Lookback)
+| where CounterName =~ "Free Megabytes"
+| summarize arg_max(TimeGenerated, CounterValue) by _ResourceId, InstanceName
+| project _ResourceId, InstanceName, FreeMB=CounterValue;
+LatestPct
+| join kind=leftouter LatestMB on _ResourceId, InstanceName
+| extend FreeGiB = round(FreeMB / 1024.0, 2)
+| extend State = case(FreePct < 10 or FreeGiB < 5, "Critical",
+                      FreePct < 20 or FreeGiB < 10, "Warning", "Healthy")
+| project TimeGenerated, State, FreePct=round(FreePct, 1), FreeGiB,
+          Computer, Disk=InstanceName, _ResourceId
+| order by State asc, FreePct asc

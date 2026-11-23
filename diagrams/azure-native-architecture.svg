@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#17365D"/></marker></defs>
+<style>
+text{font-family:'Aptos','Segoe UI',Arial,sans-serif; fill:#243447} .title{font-size:34px;font-weight:700;fill:#17365D} .subtitle{font-size:17px;fill:#5B6573} .section{font-size:21px;font-weight:700;fill:#17365D} .boxTitle{font-size:17px;font-weight:700} .small{font-size:14px} .tiny{font-size:12px;fill:#5B6573} .solid{fill:none;stroke-width:3} .dashed{fill:none;stroke-width:3;stroke-dasharray:10 8} .dotted{fill:none;stroke-width:3;stroke-dasharray:2 7}
+</style><rect width="1600" height="900" fill="white"/><text x="60" y="55" class="title">Solution B - Azure-native disk monitoring</text><text x="60" y="84" class="subtitle">Azure Policy owns enrollment; no automation controller is required for steady state.</text><rect x="60" y="140" width="370" height="590" rx="24" fill="#F7F9FC" stroke="#94A3B8" stroke-width="2"/>
+<text x="90" y="180" class="section">Azure estate</text>
+<rect x="105" y="225" width="280" height="95" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="245.0" y="252" text-anchor="middle" class="boxTitle" fill="#17365D">Management group</text>
+<text x="245.0" y="277" text-anchor="middle" class="small">10 subscriptions • 100-200 VMs</text>
+<rect x="105" y="380" width="280" height="120" rx="16" fill="#EAF5FD" stroke="#0078D4" stroke-width="2"/>
+<text x="245.0" y="407" text-anchor="middle" class="boxTitle" fill="#17365D">Windows and Linux VMs</text>
+<text x="245.0" y="432" text-anchor="middle" class="small">System-assigned identity</text>
+<text x="245.0" y="452" text-anchor="middle" class="small">AMA extension</text>
+<text x="245.0" y="472" text-anchor="middle" class="small">OS-specific DCR association</text>
+<rect x="105" y="570" width="280" height="90" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="245.0" y="597" text-anchor="middle" class="boxTitle" fill="#17365D">Azure Resource Graph</text>
+<text x="245.0" y="622" text-anchor="middle" class="small">Cross-subscription inventory</text>
+<rect x="500" y="140" width="400" height="590" rx="24" fill="#F4F9FE" stroke="#0078D4" stroke-width="2"/>
+<text x="530" y="180" class="section">Enrollment and governance</text>
+<rect x="560" y="250" width="280" height="125" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="700.0" y="277" text-anchor="middle" class="boxTitle" fill="#17365D">Bicep + Azure CLI</text>
+<text x="700.0" y="302" text-anchor="middle" class="small">Deploy workspace, DCRs, alerts</text>
+<text x="700.0" y="322" text-anchor="middle" class="small">and Workbook</text>
+<rect x="560" y="440" width="280" height="125" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="700.0" y="467" text-anchor="middle" class="boxTitle" fill="#17365D">Management-group Azure Policy</text>
+<text x="700.0" y="492" text-anchor="middle" class="small">Install AMA • assign DCR</text>
+<text x="700.0" y="512" text-anchor="middle" class="small">remediate non-compliance</text>
+<rect x="970" y="140" width="560" height="590" rx="24" fill="#F7FBFF" stroke="#0078D4" stroke-width="3"/>
+<text x="1000" y="180" class="section">Azure Monitor</text>
+<rect x="1025" y="230" width="200" height="100" rx="16" fill="white" stroke="#0078D4" stroke-width="2"/>
+<text x="1125.0" y="257" text-anchor="middle" class="boxTitle" fill="#17365D">DCRs</text>
+<text x="1125.0" y="282" text-anchor="middle" class="small">Windows + Linux</text>
+<text x="1125.0" y="302" text-anchor="middle" class="small">300-second baseline</text>
+<rect x="1270" y="230" width="200" height="100" rx="16" fill="#EAF5FD" stroke="#0078D4" stroke-width="2"/>
+<text x="1370.0" y="257" text-anchor="middle" class="boxTitle" fill="#17365D">Log Analytics</text>
+<text x="1370.0" y="282" text-anchor="middle" class="small">Perf table</text>
+<text x="1370.0" y="302" text-anchor="middle" class="small">central workspace</text>
+<rect x="1025" y="430" width="200" height="105" rx="16" fill="white" stroke="#C42B1C" stroke-width="2"/>
+<text x="1125.0" y="457" text-anchor="middle" class="boxTitle" fill="#17365D">KQL + alerts</text>
+<text x="1125.0" y="482" text-anchor="middle" class="small">Warning • critical</text>
+<text x="1125.0" y="502" text-anchor="middle" class="small">stale telemetry</text>
+<rect x="1270" y="430" width="200" height="105" rx="16" fill="white" stroke="#107C10" stroke-width="2"/>
+<text x="1370.0" y="457" text-anchor="middle" class="boxTitle" fill="#17365D">Workbook</text>
+<text x="1370.0" y="482" text-anchor="middle" class="small">Fleet view</text>
+<text x="1370.0" y="502" text-anchor="middle" class="small">trends • coverage</text>
+<rect x="1145" y="600" width="210" height="85" rx="16" fill="white" stroke="#C42B1C" stroke-width="2"/>
+<text x="1250.0" y="627" text-anchor="middle" class="boxTitle" fill="#17365D">Action Group</text>
+<text x="1250.0" y="652" text-anchor="middle" class="small">Operations / ITSM / on-call</text>
+<path d="M385 440 C460 440, 500 285, 560 285" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M385 615 C470 615, 500 300, 560 300" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M840 285 C930 285, 950 280, 1025 280" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M840 470 C925 470, 950 300, 1025 300" class="dashed" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M385 440 C690 760, 990 320, 1270 280" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1225 280 L1270 280" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1370 330 L1125 430" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1370 330 L1370 430" class="solid" stroke="#0078D4" marker-end="url(#arrow)"/>
+<path d="M1125 535 L1215 600" class="dotted" stroke="#17365D" marker-end="url(#arrow)"/>
+<path d="M1370 535 L1285 600" class="dotted" stroke="#17365D" marker-end="url(#arrow)"/>
+<text x="60" y="875" class="tiny">Solid: telemetry   Dashed: management / policy   Dotted: alert and operator response</text></svg>

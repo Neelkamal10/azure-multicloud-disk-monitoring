@@ -1,0 +1,22 @@
+---
+- name: Discover eligible Azure virtual machines with Resource Graph
+  hosts: localhost
+  gather_facts: false
+  vars:
+    inventory_output: "{{ playbook_dir }}/../../build/azure-vm-inventory.json"
+  tasks:
+    - name: Create the local inventory directory
+      ansible.builtin.file:
+        path: "{{ inventory_output | dirname }}"
+        state: directory
+        mode: '0700'
+
+    - name: Query all pages of machines visible to the Azure CLI identity
+      ansible.builtin.command:
+        argv:
+          - python3
+          - "{{ playbook_dir }}/../../scripts/discover_azure_vms.py"
+          - --output
+          - "{{ inventory_output }}"
+      register: discovery
+      changed_when: true

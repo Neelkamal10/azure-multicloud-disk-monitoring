@@ -1,0 +1,10 @@
+// Join this reporting set to the eligible Resource Graph inventory in the Workbook or automation job.
+// Detect recently reporting machines that have gone quiet. Compare this with
+// eligible inventory separately to find machines that have never reported.
+Perf
+| where TimeGenerated > ago(7d)
+| where CounterName in~ ("% Free Space", "% Used Space", "Free Megabytes")
+| summarize LastDiskSample=max(TimeGenerated) by _ResourceId, Computer
+| where LastDiskSample < ago(15m)
+| extend MinutesStale=datetime_diff('minute', now(), LastDiskSample)
+| order by MinutesStale desc
